@@ -1,6 +1,9 @@
 # weather_app
 This application can help people view weather all around the world.
-# for debug run
+
+#Install on real device
+[file.apk](release_build\weather_app_release.apk)
+# For debug run
 - This project run on flutter v3.13.8
 - Run these command before run:
     + flutter pub get
