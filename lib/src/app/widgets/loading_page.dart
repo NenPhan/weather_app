@@ -15,7 +15,7 @@ class LoadingPage extends StatelessWidget {
         child: Center(
           child: SizedBox(
               width: (scrSize(context).width + scrSize(context).height) / 2 * 0.4,
-              child: Lottie.asset(Assets.lotties.wallet)),
+              child: Lottie.asset(Assets.lotties.loading)),
         ),
       ),
     );

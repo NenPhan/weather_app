@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    var brightness = MediaQuery.of(context).platformBrightness;
-    bool systemDarkMode = brightness == Brightness.dark;
+    // var brightness = MediaQuery.of(context).platformBrightness;
+    // bool systemDarkMode = brightness == Brightness.dark;
+    bool isDark = DateTime.now().isAfter(DateTime.now().copyWith(hour: 18, minute: 0));
 
     return GestureDetector(
       onTap: () {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<ThemeCubit>(
-            create: (context) => ThemeCubit(systemDarkMode),
+            create: (context) => ThemeCubit(isDark),
           ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(

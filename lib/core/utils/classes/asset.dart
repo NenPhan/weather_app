@@ -12,5 +12,7 @@ class LottieAsset {
   LottieAsset();
   String path = 'assets/lotties/';
 
-  String get wallet => '${path}loading/wallet.json';
+  String get loading => '${path}loading.json';
+  String get rain => '${path}rain.json';
+  String get wind => '${path}wind.json';
 }

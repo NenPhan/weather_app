@@ -41,27 +41,32 @@ class MyThemes {
     textTheme: const TextTheme(
       bodySmall: TextStyle(
         fontSize: 12,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       bodyLarge: TextStyle(
         fontSize: 17,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       titleMedium: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
       titleLarge: TextStyle(
         fontSize: 25,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
     ),
@@ -79,30 +84,35 @@ class MyThemes {
     textTheme: TextTheme(
       bodySmall: TextStyle(
         fontSize: 12,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: MyColor.mainColor,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: MyColor.mainColor,
       ),
       bodyLarge: TextStyle(
         fontSize: 17,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
+        color: MyColor.mainColor,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
         color: MyColor.mainColor,
       ),
       titleMedium: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: MyColor.mainColor,
       ),
       titleLarge: TextStyle(
         fontSize: 25,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         color: MyColor.mainColor,
       ),
     ),
-    extensions: [AppColors(splashBgr: MyColor.mainColorList[3])],
+    extensions: [AppColors(splashBgr: MyColor.bgr1)],
   );
 }

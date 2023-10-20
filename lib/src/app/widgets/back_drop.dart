@@ -1,18 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weather_app/core/config/my_theme.dart';
+import 'package:weather_app/core/utils/classes/asset.dart';
 import 'package:weather_app/core/widgets/sz.dart';
 
-class BackDrop extends StatefulWidget {
-  const BackDrop({super.key, required this.child});
+class BackDrop extends StatelessWidget {
+  const BackDrop({super.key, required this.child, required this.weatherCondition});
   final Widget child;
+  final String weatherCondition;
 
-  @override
-  State<BackDrop> createState() => _BackDropState();
-}
-
-class _BackDropState extends State<BackDrop> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -25,28 +24,54 @@ class _BackDropState extends State<BackDrop> {
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
           Positioned(
-            left: -100,
-            top: scrSize(context).height / 3,
+            left: -scrSize(context).width * 0.1,
+            top: scrSize(context).height * 0.0,
             child: SlideSwitcher(
-              child:
-                  // Container(
-                  //   key: UniqueKey(),
-                  //   width: 400,
-                  //   height: 400,
-                  //   decoration: BoxDecoration(
-                  //       shape: BoxShape.circle,
-                  //       color: Colors.yellow[600],
-                  //       boxShadow: [BoxShadow(color: Colors.yellow[400]!, blurRadius: 100, spreadRadius: 1)]),
-                  // ),
-                  Lottie.asset(name),
+              child: //
+                  weatherCondition == ''
+                      ? const SizedBox()
+                      : weatherCondition.toLowerCase().contains('rain')
+                          ? Transform.scale(
+                              scale: 1.2,
+                              child: Lottie.asset(
+                                Assets.lotties.rain,
+                              ))
+                          : weatherCondition.toLowerCase().contains('cloudy')
+                              ? Transform.scale(
+                                  scale: 1.2,
+                                  child: Lottie.asset(
+                                    Assets.lotties.wind,
+                                  ))
+                              : BlocBuilder(
+                                  bloc: context.read<ThemeCubit>(),
+                                  builder: (context, state) {
+                                    return Container(
+                                      key: UniqueKey(),
+                                      width: scrSize(context).height * 0.4,
+                                      height: scrSize(context).height * 0.4,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: state == ThemeMode.dark
+                                              ? const Color.fromARGB(153, 188, 242, 255)
+                                              : Colors.yellow[600],
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: state == ThemeMode.dark
+                                                    ? const Color.fromARGB(153, 188, 242, 255)
+                                                    : Colors.yellow[400]!,
+                                                blurRadius: state == ThemeMode.dark ? 1 : 50,
+                                                spreadRadius: state == ThemeMode.dark ? 1 : 50)
+                                          ]),
+                                    );
+                                  }),
             ),
           ),
           SizedBox(
             width: scrSize(context).width,
             height: scrSize(context).height,
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-              child: widget.child,
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: child,
             ),
           ),
         ],

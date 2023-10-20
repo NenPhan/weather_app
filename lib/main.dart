@@ -8,7 +8,8 @@ void main() async {
   runApp(
     AppConfig(
       appName: 'Weather',
-      apiUrl: 'https://',
+      apiUrl: 'https://api.weatherapi.com/v1/',
+      apiKey: '8031c2515d3c4a759a3123320231810',
       logResponse: false,
       child: const MyApp(),
     ),
