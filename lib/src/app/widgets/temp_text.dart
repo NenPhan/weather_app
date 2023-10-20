@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/config/my_theme.dart';
+import 'package:weather_app/core/utils/classes/storage.dart';
 import 'package:weather_app/core/widgets/my_text.dart';
 
 class TempertureText extends StatelessWidget {
@@ -15,17 +16,19 @@ class TempertureText extends StatelessWidget {
         Row(
           children: [
             MyText(temp % 1 == 0 ? temp.round().toString() : temp.toString(),
-                style: textTheme(context).bodyMedium?.copyWith(fontSize: 20 * scale, fontWeight: FontWeight.w400)),
+                style: textTheme(context).bodyMedium?.copyWith(
+                    fontSize: 20 * scale, fontWeight: FontWeight.w400)),
           ],
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MyText('°C',
-                style: textTheme(context)
-                    .bodyMedium
-                    ?.copyWith(fontSize: 9 * scale, fontWeight: FontWeight.w500, height: 1.5)),
+            MyText(Storage().isCelsius() ? '°C' : '°F',
+                style: textTheme(context).bodyMedium?.copyWith(
+                    fontSize: 9 * scale,
+                    fontWeight: FontWeight.w500,
+                    height: 1.5)),
           ],
         ),
       ],

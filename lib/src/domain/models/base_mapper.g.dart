@@ -26,7 +26,7 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       lon: (json['lon'] as num?)?.toDouble(),
       tzId: json['tz_id'] as String?,
       localtimeEpoch: json['localtime_epoch'] as int?,
-      localtime: json['localtime'] as String?,
+      localtime: localTimeFromJson(json['localtime']),
     );
 
 Current _$CurrentFromJson(Map<String, dynamic> json) => Current(

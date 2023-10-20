@@ -14,5 +14,8 @@ class LottieAsset {
 
   String get loading => '${path}loading.json';
   String get rain => '${path}rain.json';
-  String get wind => '${path}wind.json';
+  String get cloud => '${path}wind.json';
+  String get thunder => '${path}thunder.json';
+  String get snow => '${path}snow.json';
+  String get fog => '${path}fog.json';
 }

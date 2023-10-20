@@ -7,3 +7,5 @@ class ChangeDateEvent extends HomePageEvent {
 
   ChangeDateEvent(this.index);
 }
+
+class ChangeTempUnit extends HomePageEvent {}

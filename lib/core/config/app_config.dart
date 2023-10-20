@@ -19,11 +19,9 @@ class AppConfig extends InheritedWidget {
   final String apiUrl;
   final String apiKey;
   final bool logResponse;
-  OverlayEntry overlayEntry = OverlayEntry(
-    builder: (context) => const SizedBox(),
-  );
 
-  static AppConfig? instance(BuildContext context) => context.dependOnInheritedWidgetOfExactType(aspect: AppConfig);
+  static AppConfig? instance(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType(aspect: AppConfig);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;

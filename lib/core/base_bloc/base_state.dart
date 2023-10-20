@@ -17,6 +17,9 @@ class InitialState extends BaseState {
 }
 
 class LoadingState extends BaseState {
+  final dynamic data;
+
+  const LoadingState({this.data});
   @override
   String toString() => 'LoadingState';
 }
@@ -84,7 +87,7 @@ class LoadMoreSuccessState extends BaseState {
     return LoadMoreSuccessState(
       data: data ?? this.data,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
-      status: status ?? this.status ,
+      status: status ?? this.status,
     );
   }
 

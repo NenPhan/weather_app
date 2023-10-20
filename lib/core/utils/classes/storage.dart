@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _current_location = '/current_location';
 const _saved_locations = '/saved_location';
+const _temp_unit = '/temp_unit';
 
 class Storage {
   static Storage? _instance;
@@ -36,11 +37,37 @@ class Storage {
     preferences?.remove(_saved_locations);
   }
 
-  saveLocation(String location) {
-    preferences?.setString(_current_location, location);
+  saveLocation(String city, String country) {
+    preferences?.setString(_current_location, city);
+    var savedLocations = preferences?.getStringList(_saved_locations) ?? [];
+    if (savedLocations.length == 10) {
+      savedLocations.removeAt(0);
+    }
+    if (!savedLocations.contains('$country, $city')) {
+      savedLocations.add('$country, $city');
+    }
+    preferences?.setStringList(_saved_locations, savedLocations);
   }
 
   getCurrentLocation() {
     return preferences?.getString(_current_location);
+  }
+
+  List<String> getSavedLocations() {
+    return preferences?.getStringList(_saved_locations) ?? [];
+  }
+
+  initUnit() {
+    var val = preferences?.getBool(_temp_unit);
+    if (val == null) preferences?.setBool(_temp_unit, true);
+  }
+
+  changeUnit() {
+    var val = preferences?.getBool(_temp_unit) ?? true;
+    preferences?.setBool(_temp_unit, !val);
+  }
+
+  isCelsius() {
+    return preferences?.getBool(_temp_unit);
   }
 }

@@ -55,7 +55,11 @@ class DioClient extends NetworkClient<dynamic, DioParams> {
     log(logString);
     try {
       final rawResponse = (await _connect(params.httpMethod,
-          url: url, headers: header, body: params.body, contentType: contentType, params: params.params));
+          url: url,
+          headers: header,
+          body: params.body,
+          contentType: contentType,
+          params: params.params));
       // ignore: prefer_typing_uninitialized_variables
       var response;
       // log('Response: $rawResponse}');
@@ -152,7 +156,9 @@ extension ResponseExtension on Response {
       String errorText = "";
       if (data["errors"] != null) {
         Map<dynamic, dynamic> errors = data["errors"];
-        if (errors.values.isEmpty || errors.values.toList()[0] == null || (errors.values.toList()[0] as List).isEmpty) {
+        if (errors.values.isEmpty ||
+            errors.values.toList()[0] == null ||
+            (errors.values.toList()[0] as List).isEmpty) {
           errorText = 'エラー！エラーが発生しました。しばらくしてからもう一度お試しください。';
         }
         errorText = errors.values.toList()[0][0];

@@ -27,7 +27,7 @@ class WeatherTimeItemWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TempertureText(
-                    temp: data.tempC ?? 0,
+                    temp: data.temp ?? 0,
                     scale: 0.9,
                   ),
                 ],

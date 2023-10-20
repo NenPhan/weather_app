@@ -8,8 +8,11 @@ class WeatherData {
 
   WeatherData({this.location, this.current, this.forecast});
 
-  factory WeatherData.fromJson(Map<String, dynamic> json) => _$WeatherDataFromJson(json);
+  factory WeatherData.fromJson(Map<String, dynamic> json) =>
+      _$WeatherDataFromJson(json);
 }
+
+localTimeFromJson(json) => DateFormat("yyyy-MM-dd h:m").parse(json);
 
 @JsonSerializable(createToJson: false)
 class Location {
@@ -22,7 +25,8 @@ class Location {
   final String? tzId;
   @JsonKey(name: 'localtime_epoch')
   final int? localtimeEpoch;
-  final String? localtime;
+  @JsonKey(fromJson: localTimeFromJson)
+  final DateTime? localtime;
 
   Location({
     this.name,
@@ -35,7 +39,8 @@ class Location {
     this.localtime,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -81,7 +86,11 @@ class Current {
     this.avgtempF,
   });
 
-  factory Current.fromJson(Map<String, dynamic> json) => _$CurrentFromJson(json);
+  factory Current.fromJson(Map<String, dynamic> json) =>
+      _$CurrentFromJson(json);
+
+  double? get temp => Storage().isCelsius() ? tempC : tempF;
+  double? get avgTemp => Storage().isCelsius() ? avgtempC : avgtempF;
 }
 
 @JsonSerializable(createToJson: false)
@@ -94,7 +103,8 @@ class Condition {
     this.icon,
   });
 
-  factory Condition.fromJson(Map<String, dynamic> json) => _$ConditionFromJson(json);
+  factory Condition.fromJson(Map<String, dynamic> json) =>
+      _$ConditionFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -122,7 +132,8 @@ class AirQuality {
     this.gbDefraIndex,
   });
 
-  factory AirQuality.fromJson(Map<String, dynamic> json) => _$AirQualityFromJson(json);
+  factory AirQuality.fromJson(Map<String, dynamic> json) =>
+      _$AirQualityFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -133,7 +144,8 @@ class Forecast {
     this.forecastday,
   });
 
-  factory Forecast.fromJson(Map<String, dynamic> json) => _$ForecastFromJson(json);
+  factory Forecast.fromJson(Map<String, dynamic> json) =>
+      _$ForecastFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -153,7 +165,8 @@ class ForecastDay {
     this.hour,
   });
 
-  factory ForecastDay.fromJson(Map<String, dynamic> json) => _$ForecastDayFromJson(json);
+  factory ForecastDay.fromJson(Map<String, dynamic> json) =>
+      _$ForecastDayFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -219,4 +232,5 @@ class Hour {
   });
 
   factory Hour.fromJson(Map<String, dynamic> json) => _$HourFromJson(json);
+  double? get temp => Storage().isCelsius() ? tempC : tempF;
 }

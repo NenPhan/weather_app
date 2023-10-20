@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
 
   initSplashPage(context) async {
     await Storage.init();
-    await 2.delayed();
+    Storage().initUnit();
     try {
       var status = await Permission.location.status;
       if (status != PermissionStatus.granted) {
@@ -24,6 +24,7 @@ class SplashPage extends StatelessWidget {
       log(e.toString());
     }
 
+    await 2.delayed();
     Navigator.pushReplacementNamed(context, HomePage.route);
   }
 
